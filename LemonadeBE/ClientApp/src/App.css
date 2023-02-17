@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+  background-color: #F5F5F5;
+}
+
+.App-logo {
+  position: absolute;
+  width: 799px;
+  height: 354px;
+  left: 541px;
+  top: 0px;
+}
+
+.List-container {
+  background: #FAFAFA;
+  position: absolute;
+  width: 968px;
+  height: 759px;
+  left: 249px;
+  top: 389px;
+}
