@@ -1,4 +1,6 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
+#development
+/src/stub.js
 
 # dependencies
 /node_modules
