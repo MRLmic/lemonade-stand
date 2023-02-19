@@ -5,45 +5,24 @@ import ListRow from './ListRow.js'
 
 const ListContainer = () => {
 
-  const columns = useMemo(
-    () => [
-      {
-        id: 1,
-        header: '',
-      },
-      {
-        id: 2,
-        header: '',
-      },
-      {
-        id: 3,
-        header: 'Price',
-      },
-      {
-        id: 4,
-        header: 'QTY',
-      },
-      {
-        id: 5,
-        header: 'Total',
-      },
-      {
-        id: 6,
-        header: '',
-      },
-    ],
-    []
-  );
+
 
 return <div className='List-container'>
   <table>
     <tbody>
       <tr>
-        <th>Price</th>
-        <th>QTY</th>
-        <th>Total</th>
         <th></th>
+        <th></th>
+        <th className='price-header'>Price</th>
+        <th className='qty-header'>QTY</th>
+        <th className='total-header'>Total</th>
       </tr>
+        <ListRow>
+        </ListRow>
+        <ListRow>
+        </ListRow>
+        <ListRow>
+        </ListRow>
         <ListRow>
         </ListRow>
     </tbody>
