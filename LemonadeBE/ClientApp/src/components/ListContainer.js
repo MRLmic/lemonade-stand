@@ -1,33 +1,34 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import { data } from '../stub.js'
+import ListRow from './ListRow.js'
 
 const ListContainer = () => {
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'data.Id', //access nested data with dot notation
+        id: 1,
         header: '',
       },
       {
-        accessorKey: 'data.userFirst',
+        id: 2,
         header: '',
       },
       {
-        accessorKey: 'data.userFirst',
+        id: 3,
         header: 'Price',
       },
       {
-        accessorKey: 'data.userFirst',
+        id: 4,
         header: 'QTY',
       },
       {
-        accessorKey: 'data.userFirst',
+        id: 5,
         header: 'Total',
       },
       {
-        accessorKey: 'data.userFirst',
+        id: 6,
         header: '',
       },
     ],
@@ -35,21 +36,18 @@ const ListContainer = () => {
   );
 
 return <div className='List-container'>
-  {/* {data.map((data, key) => {
-    return (
-      <div key={key}>
-        {data.Id}
-      </div>
-    )
-  })} */}
-  <MaterialReactTable
-    columns={columns}
-    data={data}
-    enableColumnActions={false}
-    enablePagination={false}
-    enableSorting={false}
-    enableTopToolbar={false}
-  />
+  <table>
+    <tbody>
+      <tr>
+        <th>Price</th>
+        <th>QTY</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+        <ListRow>
+        </ListRow>
+    </tbody>
+  </table>
 </div>
 }
 
