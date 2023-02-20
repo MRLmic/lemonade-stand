@@ -1,6 +1,7 @@
 import React from 'react';
 import Lemon from './../img/lemon.png'
 import Trash from './../img/trash-icon.svg'
+import QuantityComponent from './QuantityComponent.js'
 
 const ListRow = () => {
 
@@ -23,7 +24,7 @@ const ListRow = () => {
                     1.00
                 </td>
                 <td className='quantity-text'>
-                     1
+                    <QuantityComponent></QuantityComponent>
                 </td>
                 <td className='total-text'>
                     1.00

@@ -78,6 +78,7 @@ tr {
 .quantity-text {
   font-family: 'Poppins';
   line-height: 30px;
+  padding: 20px;
 } 
 
 /* Total Box */
