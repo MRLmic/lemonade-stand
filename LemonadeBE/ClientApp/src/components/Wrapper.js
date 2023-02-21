@@ -3,7 +3,7 @@ import ListContainer from './ListContainer.js'
 import TotalBox from './TotalBox.js'
 
 export const TotalContext = createContext({
-    total:4,
+    total:0,
     'LargeLemonade': 0,
     'Regular Lemonade': 0,
     'LargePinkLemonade': 0,
@@ -12,7 +12,7 @@ export const TotalContext = createContext({
 
 export default function Wrapper() {
     const initialState = {
-        total:4,
+        total:0,
         'LargeLemonade': 0,
         'RegularLemonade': 0,
         'LargePink Lemonade': 0,
@@ -37,7 +37,7 @@ export default function Wrapper() {
             };
             case "MINUS": return {
                 ...state,
-                total: state.total + action.price,
+                total: state.total - action.price,
                 [orderType]: state[orderType] - 1
             };
             default: return state;
