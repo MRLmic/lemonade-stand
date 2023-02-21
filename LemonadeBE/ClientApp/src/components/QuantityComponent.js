@@ -1,15 +1,16 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
+import { TotalContext } from './Wrapper.js'
 
 function QuantityComponent() {
-    const [total, setTotal] = useState(0);
+const {state,dispatch}  = useContext(TotalContext);
 
-    return (
-            <div>
-                <button onClick={() => setTotal(total - 1)}>-</button>
-                <span className='quantity-text'>{total}</span>
-                <button onClick={() => setTotal(total + 1)}>+</button>
-            </div>
-            )
+return (
+        <div>
+            <button onClick={() => dispatch({type: 'MINUS'})}>-</button>
+            <span className='quantity-text'>{state.total}</span>
+            <button onClick={() => dispatch({type: 'PLUS'})}>+</button>
+        </div>
+        )
 }
 
 export default QuantityComponent;
