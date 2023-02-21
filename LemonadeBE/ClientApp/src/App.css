@@ -77,7 +77,6 @@ tr {
 
 .quantity-text {
   display: inline-block;
-  /* float: left; */
   font-family: 'Poppins';
   line-height: 30px;
   margin-top: 13px;
@@ -86,6 +85,11 @@ tr {
 
 .trash {
   padding-right: 20px;
+}
+
+.trash-button {
+  background-color: #F5F5F5;
+  border: none;
 }
 
 /* Total Box */
