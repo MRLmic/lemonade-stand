@@ -34,8 +34,8 @@ let quantity = state.state[flavor];
                     {quantity}
                 </td>
                 <td className='trash'>
-                    <button>
-                    <img src={Trash} alt='trash'className='trash-icon'></img>
+                    <button className='trash-button'>
+                    <img src={Trash} alt='trash'></img>
                     </button>
                 </td>
             </tr>)
