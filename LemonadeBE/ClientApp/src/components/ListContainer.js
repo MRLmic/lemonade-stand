@@ -1,33 +1,45 @@
-import React, { useMemo } from 'react';
-import MaterialReactTable from 'material-react-table';
-import { data } from '../stub.js'
+import React from 'react';
 import ListRow from './ListRow.js'
 
-const ListContainer = () => {
+function ListContainer() {
 
-
+const orderTypes = [ 
+  {
+    flavor: "Lemonade",
+    size: "Regular",
+    price: 1
+  },
+  {
+    flavor: "Pink Lemonade",
+    size: "Regular",
+    price: 1
+  },
+  {
+    flavor: "Lemonade",
+    size: "Large",
+    price: 1.5
+  },
+  {
+    flavor: "Pink Lemonade",
+    size: "Large",
+    price: 1.5
+  }
+];
 
 return <div className='List-container'>
-  <table>
-    <tbody>
-      <tr>
-        <th></th>
-        <th></th>
-        <th className='price-header'>Price</th>
-        <th className='qty-header'>QTY</th>
-        <th className='total-header'>Total</th>
-      </tr>
-        <ListRow>
-        </ListRow>
-        <ListRow>
-        </ListRow>
-        <ListRow>
-        </ListRow>
-        <ListRow>
-        </ListRow>
-    </tbody>
-  </table>
-</div>
+          <table>
+            <tbody>
+              <tr>
+                <th></th>
+                <th></th>
+                <th className='price-header'>Price</th>
+                <th className='qty-header'>QTY</th>
+                <th className='total-header'>Total</th>
+              </tr>
+                {orderTypes.map((type, index) => <ListRow key={index} flavor={type.flavor} size={type.size} price={type.price}></ListRow>)}
+            </tbody>
+          </table>
+        </div> 
 }
 
 export default ListContainer;

@@ -3,7 +3,7 @@ import Lemon from './../img/lemon.png'
 import Trash from './../img/trash-icon.svg'
 import QuantityComponent from './QuantityComponent.js'
 
-const ListRow = () => {
+function ListRow(props) {
 
     return (<tr className='List-row'>
                 <td className='lemon-cell'>
@@ -13,15 +13,15 @@ const ListRow = () => {
                 </td>
                 <td className='flavor'>
                     <span>
-                        Kind
+                        {props.flavor}
                     </span>
                     <span className='size-text'>
                         <br></br>
-                        Size
+                        {props.size}
                     </span>
                 </td>
                 <td>
-                    1.00
+                    {props.price}{props.price === 1 ? '.00' : '0'}
                 </td>
                 <td className='quantity-text'>
                     <QuantityComponent></QuantityComponent>
@@ -29,7 +29,7 @@ const ListRow = () => {
                 <td className='total-text'>
                     1.00
                 </td>
-                <td>
+                <td className='trash'>
                     <img src={Trash} alt='trash'className='trash-icon'></img>
                 </td>
             </tr>)

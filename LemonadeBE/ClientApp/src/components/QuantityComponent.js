@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 
 function QuantityComponent() {
-    const [count, setCount] = useState(0);
+    const [total, setTotal] = useState(0);
 
-    return (<section>
-                <button onClick={() => setCount(count - 1)}>-</button>
-                <text className='quantity-text'>{count}</text>
-                <button onClick={() => setCount(count + 1)}>+</button>
-            </section>)
+    return (
+            <div>
+                <button onClick={() => setTotal(total - 1)}>-</button>
+                <span className='quantity-text'>{total}</span>
+                <button onClick={() => setTotal(total + 1)}>+</button>
+            </div>
+            )
 }
 
 export default QuantityComponent;
