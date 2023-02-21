@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { TotalContext } from './Wrapper.js';
 
 function TotalBox() {
-const total = useContext(TotalContext);
+const { total } = useContext(TotalContext);
 
     return <div className='total-box'>
                 <div className='total'>Total</div>
