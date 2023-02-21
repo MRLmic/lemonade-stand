@@ -18,8 +18,6 @@ export default function Wrapper() {
         'LargePink Lemonade': 0,
         'RegularPink Lemonade': 0
     };
-    const PLUS = "PLUS";
-    const MINUS = "MINUS";
 
     function reducer(state, action) {
         let orderType; 
@@ -40,6 +38,12 @@ export default function Wrapper() {
                 total: state.total - action.price,
                 [orderType]: state[orderType] - 1
             };
+            case "CLEAR":
+                return {
+                    ...state,
+                    total: state.total - (action.price * state[orderType]),
+                    [orderType]: 0
+                }
             default: return state;
         }
     }

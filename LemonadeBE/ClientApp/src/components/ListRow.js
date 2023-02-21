@@ -5,9 +5,9 @@ import QuantityComponent from './QuantityComponent.js'
 import { TotalContext } from './Wrapper.js';
 
 function ListRow(props) {
-const state = useContext(TotalContext);
+const {state, dispatch} = useContext(TotalContext);
 let flavor = props.size + props.flavor.toString();
-let quantity = state.state[flavor];
+let quantity = state[flavor];
 
     return (<tr className='List-row'>
                 <td className='lemon-cell'>
@@ -34,7 +34,7 @@ let quantity = state.state[flavor];
                     {quantity}
                 </td>
                 <td className='trash'>
-                    <button className='trash-button'>
+                    <button onClick={() => dispatch({type: "CLEAR", flavor:props.flavor, size:props.size, price:props.price})} className='trash-button'>
                     <img src={Trash} alt='trash'></img>
                     </button>
                 </td>
