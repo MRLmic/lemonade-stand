@@ -3,16 +3,16 @@ import ListContainer from './ListContainer.js'
 import TotalBox from './TotalBox.js'
 
 export const TotalContext = createContext({
-    total:0,
+    total:4,
     'LargeLemonade': 0,
-    'RegularLemonade': 0,
+    'Regular Lemonade': 0,
     'LargePinkLemonade': 0,
-    'RegularPinkLemonade': 0
+    'RegularPink Lemonade': 0
 });
 
 export default function Wrapper() {
     const initialState = {
-        total:0,
+        total:4,
         'LargeLemonade': 0,
         'RegularLemonade': 0,
         'LargePink Lemonade': 0,
@@ -22,7 +22,6 @@ export default function Wrapper() {
     const MINUS = "MINUS";
 
     function reducer(state, action) {
-        console.log(action.size)   
         let orderType; 
         if (action.size === 'Regular') {
             orderType = action.flavor === 'Lemonade' ? 'RegularLemonade' : 'RegularPink Lemonade';

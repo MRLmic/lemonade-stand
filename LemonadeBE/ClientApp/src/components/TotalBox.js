@@ -2,18 +2,18 @@ import React, { useContext } from 'react';
 import { TotalContext } from './Wrapper.js';
 
 function TotalBox() {
-const { total } = useContext(TotalContext);
+const {state}  = useContext(TotalContext);
 
-    return <div className='total-box'>
+    return (<div className='total-box'>
                 <div className='total'>Total</div>
                     <TotalContext.Consumer>
-                        {total => <div className='amount'>
-                            $ {total.total}
+                        {state => <div className='amount'>
+                            ${state.state.total}
                         </div>}
                     </TotalContext.Consumer>
                 <br></br>
                 <button className='order-button'>Order Now</button>
-            </div>;
+            </div>);
 };
 
 export default TotalBox;
