@@ -7,7 +7,7 @@ import { TotalContext } from './Wrapper.js';
 function ListRow(props) {
 const {state, dispatch} = useContext(TotalContext);
 let flavor = props.size + props.flavor.toString();
-let quantity = state[flavor];
+let quantity = state[flavor] * props.price;
 
     return (<tr className='List-row'>
                 <td className='lemon-cell'>
