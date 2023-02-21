@@ -4,11 +4,16 @@ import { TotalContext } from './Wrapper.js';
 function TotalBox() {
 const {state}  = useContext(TotalContext);
 
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    });
+
     return (<div className='total-box'>
                 <div className='total'>Total</div>
                     <TotalContext.Consumer>
                         {state => <div className='amount'>
-                            ${state.state.total}
+                            {formatter.format(state.state.total)}
                         </div>}
                     </TotalContext.Consumer>
                 <br></br>
