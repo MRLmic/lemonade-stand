@@ -6,8 +6,8 @@ import { TotalContext } from './Wrapper.js';
 
 function ListRow(props) {
 const state = useContext(TotalContext);
-let flavor = props.size + props.flavor.replace(/\s+/g, '').toString();
-let quantity = state[flavor];
+let flavor = props.size + props.flavor.toString();
+let quantity = state.state[flavor];
 
     return (<tr className='List-row'>
                 <td className='lemon-cell'>
@@ -34,7 +34,9 @@ let quantity = state[flavor];
                     {quantity}
                 </td>
                 <td className='trash'>
+                    <button>
                     <img src={Trash} alt='trash'className='trash-icon'></img>
+                    </button>
                 </td>
             </tr>)
 };
