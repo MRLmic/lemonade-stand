@@ -12,6 +12,9 @@ export const TotalContext = createContext({
 
 export default function Wrapper() {
     const initialState = {
+        orderName: '',
+        orderEmail: '',
+        orderPhone: '',
         total:0,
         'LargeLemonade': 0,
         'RegularLemonade': 0,
@@ -33,10 +36,11 @@ export default function Wrapper() {
                 total: state.total + action.price,
                 [orderType]: state[orderType] + 1
             };
-            case "MINUS": return {
+            case "MINUS": 
+            return {
                 ...state,
-                total: state.total - action.price,
-                [orderType]: state[orderType] - 1
+                total: state[orderType] >= 1 ? (state.total - action.price) : state.total,
+                [orderType]: state[orderType] > 1 ? (state[orderType] -1) : 0
             };
             case "CLEAR":
                 return {
