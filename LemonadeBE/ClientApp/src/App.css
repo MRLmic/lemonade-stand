@@ -135,3 +135,15 @@ button {
   font-family: inherit;
   font-size: inherit;
 }
+
+.OrderForm {
+  background-color: inherit;
+  height: 300px;
+  padding-top: 10px;
+  text-align:justify;
+}
+
+form {
+   line-height: 40px;
+   padding: 0px 20px; 
+}

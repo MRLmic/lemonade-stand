@@ -4,11 +4,10 @@ import {formatter} from './utils.js'
 import OrderForm from './OrderForm.js'
 
 function TotalBox() {
+    const {state}  = useContext(TotalContext);
     const [open, setOpen] = useState(false);
+
     const openForm = () => setOpen(true);
-
-const {state}  = useContext(TotalContext);
-
     return (<div className='total-box'>
                 <div className='total'>Total</div>
                     <TotalContext.Consumer>
@@ -16,9 +15,9 @@ const {state}  = useContext(TotalContext);
                             {formatter.format(state.state.total)}
                         </div>}
                     </TotalContext.Consumer>
-                    <OrderForm open={open}></OrderForm>
                 <br></br>
                 <button onClick={openForm} className='order-button'>Order Now</button>
+                <OrderForm open={true} setOpen={setOpen}></OrderForm>
             </div>);
 };
 
