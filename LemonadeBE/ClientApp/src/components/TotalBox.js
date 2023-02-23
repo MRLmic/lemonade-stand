@@ -6,6 +6,10 @@ import OrderForm from './OrderForm.js'
 function TotalBox() {
     const {state}  = useContext(TotalContext);
     const [open, setOpen] = useState(false);
+    let orderText = open ? 'Submit' : 'Order Now';
+    function submitOrder() {
+        
+    }
 
     const openForm = () => setOpen(true);
     return (<div className='total-box'>
@@ -16,8 +20,8 @@ function TotalBox() {
                         </div>}
                     </TotalContext.Consumer>
                 <br></br>
-                <button onClick={openForm} className='order-button'>Order Now</button>
-                <OrderForm open={true} setOpen={setOpen}></OrderForm>
+                <button onClick={open ? submitOrder : openForm} className='order-button'>{orderText}</button>
+                <OrderForm open={open} setOpen={setOpen}></OrderForm>
             </div>);
 };
 

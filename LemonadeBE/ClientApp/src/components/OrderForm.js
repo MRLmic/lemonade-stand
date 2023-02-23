@@ -16,7 +16,7 @@ export default function OrderForm({open,setOpen}) {
         }
 
     return (<form onSubmit={validateForm} className="OrderForm">
-                <span>Please enter your name and your phone number OR email</span><br></br>
+                <span>Please enter your name and your phone number OR email and click submit to confirm!</span><br></br>
                 <label>
                 Name:
                 <input required autoFocus type="text" name="name" />
@@ -28,8 +28,7 @@ export default function OrderForm({open,setOpen}) {
                 <label>
                 Email:
                 <input type="email" name="email" ref={emailRef} />
-                </label><br></br>
-                <input type="submit" value="Submit" />
+                </label>
            </form>) 
     } else {return ""};   
 }
