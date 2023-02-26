@@ -36,7 +36,7 @@ return <div className='List-container'>
                 <th className='qty-header'>QTY</th>
                 <th className='total-header'>Total</th>
               </tr>
-                {orderTypes.map((type, index) => <ListRow key={index} flavor={type.flavor} size={type.size} price={type.price}></ListRow>)}
+                {orderTypes.map((type, index) => <ListRow key={index} flavor={type.flavor} size={type.size} price={type.size === "Regular" ? 1 : 1.5}></ListRow>)}
             </tbody>
           </table>
         </div> 
