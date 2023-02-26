@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { TotalContext } from './Wrapper.js';
-import {formatter} from './utils.js'
+import { TotalContext } from '../Wrapper.js';
+import {formatter} from '../utils.js'
 import OrderForm from './OrderForm.js'
 
 function TotalBox() {

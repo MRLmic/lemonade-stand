@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from 'react';
-import ListContainer from './ListContainer.js'
-import TotalBox from './TotalBox.js'
+import ListContainer from './ItemDisplay/ListContainer.js'
+import TotalBox from './OrderDisplay/TotalBox.js'
 
 export const TotalContext = createContext({
     total:0,

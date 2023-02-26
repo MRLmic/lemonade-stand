@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { TotalContext } from './Wrapper.js'
+import { TotalContext } from '../Wrapper.js'
 
 function QuantityComponent(props) {
 const {state,dispatch}  = useContext(TotalContext);
