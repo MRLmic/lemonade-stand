@@ -15,7 +15,7 @@ class ListContainer extends React.Component {
             <th className='qty-header'>QTY</th>
             <th className='total-header'>Total</th>
           </tr>
-          {this.props.orderTypes.map((type, index) => <ListRow key={index} itemName={type.itemName} flavor={type.flavor} size={type.size} price={type.Size === "Regular" ? 1 : 1.5}></ListRow>)}
+          {this.props.orderTypes.map((type, index) => <ListRow key={index} itemName={type.itemName} flavor={type.flavor} size={type.size} price={type.size === "Regular" ? 1 : 1.5}></ListRow>)}
         </tbody>
       </table>
     </div>
