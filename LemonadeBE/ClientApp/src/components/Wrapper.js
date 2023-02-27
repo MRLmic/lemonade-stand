@@ -1,4 +1,4 @@
-import React, {createContext, useReducer, useEffect} from 'react';
+import React, {createContext, useReducer, useEffect, useState} from 'react';
 import ListContainer from './ItemDisplay/ListContainer.js'
 import TotalBox from './OrderDisplay/TotalBox.js'
 
@@ -11,20 +11,6 @@ export const TotalContext = createContext({
 });
 
 export default function Wrapper() {
-    const initialState = {
-        orderName: '',
-        orderEmail: '',
-        orderPhone: '',
-        total:0,
-        types: [
-            {ItemName: 'LEMREG', Flavor:'Lemonade', Size:'Regular'},
-            {ItemName: 'LEMLARGE', Flavor:'Lemonade', Size:'Large'},
-            {ItemName: 'PINKLARGE', Flavor:'Pink Lemonade', Size:'Large'},
-            {ItemName: 'PINKREG', Flavor:'Pink Lemonade',Size:'Regular'}
-        ],
-        order: {'LEMREG': 0, 'LEMLARGE': 0, 'PINKLARGE': 0, 'PINKREG': 0}
-    };
-
     useEffect(() => {
         const url = "http://localhost:5101/api/Product";
 
@@ -33,14 +19,22 @@ export default function Wrapper() {
                 const response = await fetch(url);
                 const json = await response.json();
                 console.log(json);
+                dispatch({type:"UPDATE", types: json})
             } catch (error) {
                 console.log("error", error);
             }
         };
-
         fetchData();
-        }, []);
-    
+    }, []);
+
+    const initialState = {
+        orderName: '',
+        orderEmail: '',
+        orderPhone: '',
+        total:0,
+        order: {'LEMREG': 0, 'LEMLARGE': 0, 'PINKLARGE': 0, 'PINKREG': 0},
+        types: []
+    };
 
     function reducer(state, action) {
         let newOrder = {...state.order}
@@ -65,6 +59,10 @@ export default function Wrapper() {
                     ...state,
                     total: state.total - (action.price * state.order[action.itemName]),
                     order: newOrder
+                }
+            case "UPDATE":
+                return {...state, 
+                    types: action.types
                 }
             default: return state;
         }
