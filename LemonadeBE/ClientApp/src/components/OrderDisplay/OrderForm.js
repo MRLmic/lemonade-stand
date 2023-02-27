@@ -1,25 +1,40 @@
-import React, {useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {TotalContext} from './../Wrapper.js'
 
-export default function OrderForm({open,setOpen}) {
+export default function OrderForm({open,setOpen, submit}) {
     const phoneNumRef = useRef('');
     const emailRef = useRef('');
+    const nameRef = useRef('');
+    const {dispatch} = useContext(TotalContext);
+
+  useEffect(() => {
+    if (submit ) {
+        if (phoneNumRef.current.value === '' && emailRef.current.value === '') {
+            alert('An email or phone number is required to place an order.')
+            return;
+        } else {
+            let customerContact
+            let contactType
+            if (emailRef.current.value === '') {
+                customerContact = phoneNumRef.current.value
+                contactType = 'phone'
+            } else {
+                customerContact = emailRef.current.value;
+                contactType = 'email'
+            }
+            dispatch({type:"SUBMIT", orderName: nameRef.current.value, customerContact: customerContact, contactType: contactType})
+            setOpen(false)
+        }
+    }
+}, [submit, dispatch, setOpen])
 
     if (open) { 
-        function validateForm(e) {
-            e.preventDefault();
-            if (phoneNumRef.current.value === '' && emailRef.current.value === '') {
-                alert('An email or phone number is required to place an order.')
-                return;
-            } else {
-                setOpen(false);
-            }
-        }
-
-    return (<form onSubmit={validateForm} className="OrderForm">
+        
+    return (<form className="OrderForm">
                 <span>Please enter your name and your phone number OR email and click submit to confirm!</span><br></br>
                 <label>
                 Name:
-                <input required autoFocus type="text" name="name" />
+                <input required autoFocus type="text" name="name" ref={nameRef}/>
                 </label><br></br>
                 <label>
                 Phone Number (no more than 10 numbers):

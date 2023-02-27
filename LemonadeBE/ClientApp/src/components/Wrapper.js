@@ -1,4 +1,4 @@
-import React, {createContext, useReducer, useEffect, useState} from 'react';
+import React, {createContext, useReducer, useEffect} from 'react';
 import ListContainer from './ItemDisplay/ListContainer.js'
 import TotalBox from './OrderDisplay/TotalBox.js'
 
@@ -64,9 +64,37 @@ export default function Wrapper() {
                 return {...state, 
                     types: action.types
                 }
+            case "SUBMIT":
+                console.log(action.orderName)
+                let orders = state.order
+                postData(action.orderName, action.customerContact, action.contactType, orders)
+                return {
+                    ...initialState,
+                    types: state.types
+                }
             default: return state;
         }
     }
+
+    const postData = (customerName, customerContact, contactType, orders) => {
+        fetch('http://localhost:5101', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                orders: orders,
+                customerName: customerName,
+                customerContact: customerContact,
+                contactType: contactType
+            }),
+        })
+            .then((res) => res.json())
+            .then((result) => console.log(result))
+            .catch((err) => console.log(err))
+    }
+
    
     const [ state, dispatch ] = useReducer(reducer, initialState);
 
