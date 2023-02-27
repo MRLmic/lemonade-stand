@@ -1,30 +1,7 @@
 import React from 'react';
 import ListRow from './ListRow.js'
 
-function ListContainer() {
-
-const orderTypes = [ 
-  {
-    flavor: "Lemonade",
-    size: "Regular",
-    price: 1
-  },
-  {
-    flavor: "Pink Lemonade",
-    size: "Regular",
-    price: 1
-  },
-  {
-    flavor: "Lemonade",
-    size: "Large",
-    price: 1.5
-  },
-  {
-    flavor: "Pink Lemonade",
-    size: "Large",
-    price: 1.5
-  }
-];
+function ListContainer(props) {
 
 return <div className='List-container'>
           <table>
@@ -36,7 +13,7 @@ return <div className='List-container'>
                 <th className='qty-header'>QTY</th>
                 <th className='total-header'>Total</th>
               </tr>
-                {orderTypes.map((type, index) => <ListRow key={index} flavor={type.flavor} size={type.size} price={type.size === "Regular" ? 1 : 1.5}></ListRow>)}
+                {props.orderTypes.map((type,index) => <ListRow key={index} itemName={type.ItemName} flavor={type.Flavor} size={type.Size} price={type.Size === "Regular" ? 1 : 1.5}></ListRow>)}
             </tbody>
           </table>
         </div> 

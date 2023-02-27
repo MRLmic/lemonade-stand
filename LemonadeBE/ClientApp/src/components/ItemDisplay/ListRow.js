@@ -7,9 +7,7 @@ import {formatter} from '../utils.js'
 
 function ListRow(props) {
 const {state, dispatch} = useContext(TotalContext);
-let flavor = props.size + props.flavor.toString();
-let quantity = state[flavor] * props.price;
-
+let quantity = state.order[props.itemName] * props.price;
 
     return (<tr className='List-row'>
                 <td className='lemon-cell'>
@@ -30,13 +28,13 @@ let quantity = state[flavor] * props.price;
                     {props.price}{props.price === 1 ? '.00' : '0'}
                 </td>
                 <td className='quantity-text'>
-                    <QuantityComponent flavor={props.flavor} size={props.size} price={props.price}></QuantityComponent>
+                    <QuantityComponent flavor={props.flavor} size={props.size} price={props.price} itemName={props.itemName}></QuantityComponent>
                 </td>
                 <td className='total-text'>
                     {formatter.format(quantity)}
                 </td>
                 <td className='trash'>
-                    <button onClick={() => dispatch({type: "CLEAR", flavor:props.flavor, size:props.size, price:props.price})} className='trash-button'>
+                    <button onClick={() => dispatch({type: "CLEAR", itemName:props.itemName, price:props.price})} className='trash-button'>
                     <img src={Trash} alt='trash'></img>
                     </button>
                 </td>

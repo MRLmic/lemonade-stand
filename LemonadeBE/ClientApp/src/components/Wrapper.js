@@ -3,11 +3,11 @@ import ListContainer from './ItemDisplay/ListContainer.js'
 import TotalBox from './OrderDisplay/TotalBox.js'
 
 export const TotalContext = createContext({
+    orderName: '',
+    orderEmail: '',
+    orderPhone: '',
     total:0,
-    'LargeLemonade': 0,
-    'Regular Lemonade': 0,
-    'LargePinkLemonade': 0,
-    'RegularPink Lemonade': 0
+    order: {'LEMREG': 0, 'LEMLARGE': 0, 'PINKLARGE': 0, 'PINKREG': 0}
 });
 
 export default function Wrapper() {
@@ -16,37 +16,41 @@ export default function Wrapper() {
         orderEmail: '',
         orderPhone: '',
         total:0,
-        'LargeLemonade': 0,
-        'RegularLemonade': 0,
-        'LargePink Lemonade': 0,
-        'RegularPink Lemonade': 0
+        types: [
+            {ItemName: 'LEMREG', Flavor:'Lemonade', Size:'Regular'},
+            {ItemName: 'LEMLARGE', Flavor:'Lemonade', Size:'Large'},
+            {ItemName: 'PINKLARGE', Flavor:'Pink Lemonade', Size:'Large'},
+            {ItemName: 'PINKREG', Flavor:'Pink Lemonade',Size:'Regular'}
+        ],
+        order: {'LEMREG': 0, 'LEMLARGE': 0, 'PINKLARGE': 0, 'PINKREG': 0}
     };
 
     function reducer(state, action) {
-        let orderType; 
-        if (action.size === 'Regular') {
-            orderType = action.flavor === 'Lemonade' ? 'RegularLemonade' : 'RegularPink Lemonade';
-        } else if (action.size === 'Large') {
-            orderType = action.flavor === 'Lemonade' ? 'LargeLemonade' : 'LargePink Lemonade';
-        }
-        switch(action.type) {
+        let newOrder = {...state.order}
+        switch(action.type) { 
             case "PLUS": 
+            newOrder[action.itemName] = state.order[action.itemName] + 1
             return {
                 ...state, 
                 total: state.total + action.price,
-                [orderType]: state[orderType] + 1
+                order: newOrder
             };
             case "MINUS": 
+            newOrder[action.itemName] = state.order[action.itemName] > 1 ? (state.order[action.itemName] -1) : 0
+            console.log(newOrder)
+
             return {
                 ...state,
-                total: state[orderType] >= 1 ? (state.total - action.price) : state.total,
-                [orderType]: state[orderType] > 1 ? (state[orderType] -1) : 0
+                total: state.order[action.itemName] >= 1 ? (state.total - action.price) : state.total,
+                order: newOrder
             };
             case "CLEAR":
+                newOrder[action.itemName] = 0
+                console.log(newOrder)
                 return {
                     ...state,
-                    total: state.total - (action.price * state[orderType]),
-                    [orderType]: 0
+                    total: state.total - (action.price * state.order[action.itemName]),
+                    order: newOrder
                 }
             default: return state;
         }
@@ -56,9 +60,9 @@ export default function Wrapper() {
 
          return (<TotalContext.Provider value={{state, dispatch}}>
                     <div>
-                    <ListContainer></ListContainer>
+                    <ListContainer  orderTypes={state.types}></ListContainer>
                     <TotalBox></TotalBox>
                     </div>
                     </TotalContext.Provider>
                 );
-}
+};
