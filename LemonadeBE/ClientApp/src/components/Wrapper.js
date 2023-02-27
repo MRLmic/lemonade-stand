@@ -1,4 +1,4 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useReducer, useEffect} from 'react';
 import ListContainer from './ItemDisplay/ListContainer.js'
 import TotalBox from './OrderDisplay/TotalBox.js'
 
@@ -25,6 +25,23 @@ export default function Wrapper() {
         order: {'LEMREG': 0, 'LEMLARGE': 0, 'PINKLARGE': 0, 'PINKREG': 0}
     };
 
+    useEffect(() => {
+        const url = "http://localhost:5101/api/Product";
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                console.log(json);
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+        }, []);
+    
+
     function reducer(state, action) {
         let newOrder = {...state.order}
         switch(action.type) { 
@@ -37,8 +54,6 @@ export default function Wrapper() {
             };
             case "MINUS": 
             newOrder[action.itemName] = state.order[action.itemName] > 1 ? (state.order[action.itemName] -1) : 0
-            console.log(newOrder)
-
             return {
                 ...state,
                 total: state.order[action.itemName] >= 1 ? (state.total - action.price) : state.total,
@@ -46,7 +61,6 @@ export default function Wrapper() {
             };
             case "CLEAR":
                 newOrder[action.itemName] = 0
-                console.log(newOrder)
                 return {
                     ...state,
                     total: state.total - (action.price * state.order[action.itemName]),
