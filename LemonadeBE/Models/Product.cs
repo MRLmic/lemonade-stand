@@ -14,5 +14,6 @@ namespace LemonadeBE
         public string? Size { get; set; }
 
         public string? Flavor { get; set; }
+        public string? ItemName { get; set; }
         }
 }
