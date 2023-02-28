@@ -6,7 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddCors(options =>
+           {
+               options.AddDefaultPolicy(policy =>
+               {
+                   policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().Build();
+               });
+           });
 builder.Services.AddDbContext<LemonadeBE.LemonadeContext>();
 
 var app = builder.Build();
@@ -17,8 +23,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-// app.UseHttpsRedirection();
+app.UseCors();
 app.UseStaticFiles();
 app.UseRouting();
 
