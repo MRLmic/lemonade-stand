@@ -70,7 +70,6 @@ export default function Wrapper() {
                     types: action.types
                 }
             case "SUBMIT":
-                console.log(action.orderName)
                 let orders = state.order
                 postData(action.orderName, action.customerContact, action.contactType, orders)
                 return {
