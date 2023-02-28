@@ -12,6 +12,7 @@ public class LemonadeContext: DbContext
         IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
+            .AddEnvironmentVariables()
             .Build();
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("LemonadeContext"));
     }
