@@ -8,7 +8,7 @@ export default function OrderForm({open,setOpen, submit}) {
     const {dispatch} = useContext(TotalContext);
 
   useEffect(() => {
-    if (submit ) {
+    if (submit) {
         if (phoneNumRef.current.value === '' && emailRef.current.value === '') {
             alert('An email or phone number is required to place an order.')
             return;
