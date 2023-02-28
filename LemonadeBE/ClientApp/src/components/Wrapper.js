@@ -12,8 +12,8 @@ export const TotalContext = createContext({
 
 export default function Wrapper() {
     useEffect(() => {
-        const url = "https://lemonadestandmljh.scm.azurewebsites.net/api/Product";
-        
+        const url = "https://lemonadestandmljh.azurewebsites.net/api/Product";
+
 
         const fetchData = async () => {
             try {
