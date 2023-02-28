@@ -12,7 +12,7 @@ export const TotalContext = createContext({
 
 export default function Wrapper() {
     useEffect(() => {
-        const url = "/api/Product";
+        const url = "api/Product";
 
         const fetchData = async () => {
             try {
@@ -77,7 +77,7 @@ export default function Wrapper() {
     }
 
     const postData = (customerName, customerContact, contactType, orders) => {
-        fetch('/api/Orders', {
+        fetch('api/Orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
