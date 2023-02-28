@@ -77,11 +77,10 @@ export default function Wrapper() {
     }
 
     const postData = (customerName, customerContact, contactType, orders) => {
-        fetch('http://localhost:5101', {
+        fetch('http://localhost:5101/api/Orders', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 orders: orders,
@@ -90,8 +89,11 @@ export default function Wrapper() {
                 contactType: contactType
             }),
         })
-            .then((res) => res.json())
-            .then((result) => console.log(result))
+            .then((response) => response.json())
+            .then((data) => {
+                const orderId = data.orderId
+                alert(`Thank you! Your Order ID is ${orderId}`)
+            })
             .catch((err) => console.log(err))
     }
 
