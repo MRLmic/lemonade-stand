@@ -10,5 +10,5 @@ public class Order
     public string CustomerName { get; set; }
     public string CustomerContact {get;set;}
     public string ContactType {get; set;}
-    public virtual ICollection<Product> Products { get; set; }
+    public string Orders {get;set;}
 }
