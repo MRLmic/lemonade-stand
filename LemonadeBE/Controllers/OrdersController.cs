@@ -85,13 +85,13 @@ namespace LemonadeBE.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(OrderResponse order)
         {
-            var orderArray = order.Orders.Select(kvp => new object[] { kvp.Key, kvp.Value }).ToArray();
+            var orders = JsonConvert.SerializeObject(order.Orders);
             Order orderToAdd = new Order
             {
                 CustomerName = order.CustomerName,
                 ContactType = order.ContactType,
                 CustomerContact = order.CustomerContact,
-                Orders = orderArray
+                Orders = orders
             };
             _context.Orders.Add(orderToAdd);
             await _context.SaveChangesAsync();

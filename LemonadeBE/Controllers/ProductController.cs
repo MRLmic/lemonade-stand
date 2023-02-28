@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LemonadeBE;
+using Microsoft.AspNetCore.Cors;
 
 namespace LemonadeBE.Controllers
 {
@@ -26,7 +27,7 @@ namespace LemonadeBE.Controllers
         {
           if (_context.Products == null)
           {
-              return NotFound();
+              return Ok();
           }
             return await _context.Products.ToListAsync();
         }
