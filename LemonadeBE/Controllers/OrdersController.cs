@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LemonadeBE;
+using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json;
 
 namespace LemonadeBE.Controllers
 {
@@ -24,10 +26,10 @@ namespace LemonadeBE.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-          if (_context.Orders == null)
-          {
-              return NotFound();
-          }
+            if (_context.Orders == null)
+            {
+                return NotFound();
+            }
             return await _context.Orders.ToListAsync();
         }
 
@@ -35,10 +37,10 @@ namespace LemonadeBE.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-          if (_context.Orders == null)
-          {
-              return NotFound();
-          }
+            if (_context.Orders == null)
+            {
+                return NotFound();
+            }
             var order = await _context.Orders.FindAsync(id);
 
             if (order == null)
@@ -81,17 +83,32 @@ namespace LemonadeBE.Controllers
 
         // POST: api/Orders
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> CreateOrder(OrderResponse order)
         {
-          if (_context.Orders == null)
-          {
-              return Problem("Entity set 'LemonadeContext.Orders'  is null.");
-          }
-            var orderToAdd = OrdersBLL.CreateOrder(order);
-            _context.Orders.Add(order);
+            var orderArray = order.Orders.Select(kvp => new object[] { kvp.Key, kvp.Value }).ToArray();
+            Order orderToAdd = new Order
+            {
+                CustomerName = order.CustomerName,
+                ContactType = order.ContactType,
+                CustomerContact = order.CustomerContact,
+                Orders = orderArray
+            };
+            _context.Orders.Add(orderToAdd);
             await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetOrderById), new { id = orderToAdd.OrderId }, orderToAdd);
+        }
 
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+
+        private async Task<ActionResult<Order>> GetOrderById(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return order;
         }
 
         private bool OrderExists(int id)
