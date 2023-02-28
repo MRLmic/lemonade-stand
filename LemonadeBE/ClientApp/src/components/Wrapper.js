@@ -12,11 +12,15 @@ export const TotalContext = createContext({
 
 export default function Wrapper() {
     useEffect(() => {
-        const url = "api/Product";
+        const url = "https://lemonadestandmljh.scm.azurewebsites.net/api/Product";
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
                 const json = await response.json();
                 console.log(json);
                 dispatch({type:"UPDATE", types: json})
