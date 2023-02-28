@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {TotalContext} from './../Wrapper.js'
 
 export default function OrderForm({open,setOpen, submit}) {
